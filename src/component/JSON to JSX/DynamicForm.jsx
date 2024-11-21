@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const formfields = {
   name: {
     type: "text",
@@ -19,22 +21,66 @@ const formfields = {
     label: "What is your password?",
     placeholder: "******",
   },
+  Birth: {
+    type: "date",
+    label: "What is your birth Date?",
+    placeholder: "",
+  },
 };
+
+const transformObject = (obj) => {
+  return Object.keys(obj).reduce((acc, cur) => {
+    acc[cur] = {
+      ...obj[cur],
+      value: "",
+    };
+    return acc;
+  }, {});
+};
+
 // Object To Array Function
 const mapObjectToArray = (obj) => {
-  return Object.keys(obj).map((key) => ({ name: key, ...formfields[key] }));
+  return Object.keys(obj).map((key) => ({ name: key, ...obj[key] }));
 };
+
 const DynamicForm = () => {
-  const formData = mapObjectToArray(formfields);
+  const [formState, setFormState] = useState(transformObject(formfields));
+  const formData = mapObjectToArray(formState);
+  //submit form logic
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const values = Object.keys(formState).reduce((acc, cur) => {
+      acc[cur] = formState[cur].value;
+      return acc;
+    }, {});
+    console.log(values);
+  };
+
+  //input field onchange logic
+  const handleChange = (event) => {
+    setFormState({
+      ...formState,
+      [event.target.name]: {
+        ...formState[event.target.name],
+        value: event.target.value,
+      },
+    });
+  };
   return (
     <>
       <h1>Submit The form</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         {formData.map((item, index) => (
           <>
             <div key={index}>
               <label>{item.label}</label>
-              <input type={item.type} name={item.name} placeholder={item.placeholder} />
+              <input
+                type={item.type}
+                name={item.name}
+                placeholder={item.placeholder}
+                value={item.value}
+                onChange={handleChange}
+              />
             </div>
           </>
         ))}

@@ -25,8 +25,8 @@ const InputForm = () => {
 
   return (
     <>
-      <h1 style={{ fontFamily: "cursive" }}>Submit Form</h1>
-      <form onSubmit={hanldeSubmit}>
+      {/* <h1 style={{ fontFamily: "cursive" }}>Submit your Form</h1> */}
+      {/* <form onSubmit={hanldeSubmit}>
         <div>
           <label>What is your name?</label>
           <input
@@ -60,7 +60,7 @@ const InputForm = () => {
         <div>
           <button type="submit">Submit </button>
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
