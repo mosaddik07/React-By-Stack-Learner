@@ -1,6 +1,6 @@
 import React from "react";
-import InputGroup from "./input-group/InputGroup";
-import Button from "./input-group/Button";
+import InputGroup from "./InputGroup";
+import Button from "./Button";
 import { useState } from "react";
 
 const Form = () => {

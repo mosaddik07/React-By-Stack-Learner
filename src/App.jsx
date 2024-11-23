@@ -6,9 +6,14 @@ library.add(fas, fab);
 //css
 import "./assets/css/style.css";
 import "milligram";
+import Form from "./component/input-group/Form";
 //module import file
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Form />
+    </div>
+  );
 };
 
 export default App;
