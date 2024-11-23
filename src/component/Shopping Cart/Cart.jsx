@@ -105,7 +105,6 @@ const Cart = () => {
   };
 
   const total = products.reduce((acc, cur) => acc + cur.total, 0);
-  console.log(total);
 
   return (
     <div style={{ margin: "30px" }}>

@@ -7,14 +7,8 @@ library.add(fas, fab);
 import "./assets/css/style.css";
 import "milligram";
 //module import file
-import Cart from "./component/Shopping Cart/Cart";
-
 const App = () => {
-  return (
-    <div>
-      <Cart />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default App;
