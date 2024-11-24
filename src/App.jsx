@@ -6,12 +6,12 @@ library.add(fas, fab);
 //css
 import "./assets/css/style.css";
 import "milligram";
-import Form from "./component/input-group/Form";
 //module import file
+import Todo from "./component/ToDo App/Todo";
 const App = () => {
   return (
     <div>
-      <Form />
+      <Todo />
     </div>
   );
 };
