@@ -3,7 +3,7 @@
  *done: hanlde oparations
  *done: hanlde a list of histories
  *done: render history list
- *todo: restore the history
+ *bug: restore the history
  */
 
 import { useEffect, useState } from "react";
@@ -158,7 +158,7 @@ const SimpleApp = () => {
                     <p style={{ marginBottom: "5px" }}>
                       Operation: {historyItem.inputs.a} {historyItem.operation} {historyItem.inputs.b}
                       ,Result:
-                      {" " + historyItem.evalFunc}, Time: {historyItem.date.toLocaleString()}
+                      {" " + result}, Time: {historyItem.date.toLocaleString()}
                     </p>
                     <button
                       onClick={() => handleRestoreBtn(historyItem)}
