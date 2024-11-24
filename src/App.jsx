@@ -7,11 +7,11 @@ library.add(fas, fab);
 import "./assets/css/style.css";
 import "milligram";
 //module import file
-import Todo from "./component/ToDo App/Todo";
+import SimpleApp from "./component/Number Oparetion/SimpleApp";
 const App = () => {
   return (
     <div>
-      <Todo />
+      <SimpleApp />
     </div>
   );
 };
