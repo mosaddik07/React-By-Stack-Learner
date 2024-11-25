@@ -7,6 +7,10 @@
  */
 
 import { useEffect, useState } from "react";
+import NumberField from "./ui/NumberField";
+import Button from "./ui/Button";
+import InputSection from "./input/InputSection";
+import OperationSection from "./operations/OperationSection";
 
 function* generateId() {
   let id = 1;
@@ -18,8 +22,8 @@ function* generateId() {
 const getId = generateId();
 
 const initialInputState = {
-  a: "",
-  b: "",
+  a: 20,
+  b: 10,
 };
 
 const SimpleApp = () => {
@@ -74,13 +78,14 @@ const SimpleApp = () => {
       [e.target.name]: parseInt(e.target.value),
     });
   };
+
   //note: handle clear button
   const handleClearOps = () => {
     setInputState({ ...initialInputState });
     setResult(0);
   };
 
-  //note: handle oparetions
+  //note: handle operations
   const handleOperations = (operation) => {
     if (!inputState.a || !inputState.b) {
       alert("invalid Input");
@@ -92,7 +97,7 @@ const SimpleApp = () => {
     setResult(eval(result));
 
     if (!restoredHistory) {
-      generateHistory(operation.result);
+      generateHistory(operation); //operation.result
     }
   };
 
@@ -118,32 +123,40 @@ const SimpleApp = () => {
 
   return (
     <div style={{ width: "50%", margin: "0 auto" }}>
-      <h1 style={{ textAlign: "center" }}>Result: {result}</h1>
+      <h1 style={{ textAlign: "center", fontFamily: "monospace" }}>Result: {result}</h1>
       <div>
-        <p>Inputs</p>
-        <input type="number" name="a" value={inputState.a} onChange={handleInputField} />
-        <input type="number" name="b" value={inputState.b} onChange={handleInputField} />
-      </div>
-      <div>
-        <p>Oparations</p>
-        <button onClick={() => handleOperations("+")} style={{ margin: "5px" }}>
-          +
-        </button>
-        <button onClick={() => handleOperations("-")} style={{ margin: "5px" }}>
-          -
-        </button>
-        <button onClick={() => handleOperations("*")} style={{ margin: "5px" }}>
-          *
-        </button>
-        <button onClick={() => handleOperations("/")} style={{ margin: "5px" }}>
-          /
-        </button>
-        <button onClick={() => handleOperations("%")} style={{ margin: "5px" }}>
-          %
-        </button>
-        <button style={{ margin: "5px" }} onClick={handleClearOps}>
-          Clear
-        </button>
+        <InputSection inputs={inputState} handleInputField={handleInputField} />
+        <OperationSection handleOperations={handleOperations} handleClearOps={handleClearOps} />
+        {/* <Button
+          text={"+"}
+          onClick={() => handleOperations("+")}
+          customStyle={{ backgroundColor: "blue", color: "#fff" }}
+          disabled={false}
+        />
+        <Button
+          text={"-"}
+          onClick={() => handleOperations("-")}
+          customStyle={{ backgroundColor: "blue", color: "#fff" }}
+          disabled={false}
+        />
+        <Button
+          text={"*"}
+          onClick={() => handleOperations("*")}
+          customStyle={{ backgroundColor: "blue", color: "#fff" }}
+          disabled={false}
+        />
+        <Button
+          text={"+"}
+          onClick={() => handleOperations("/")}
+          customStyle={{ backgroundColor: "blue", color: "#fff" }}
+          disabled={false}
+        />
+        <Button
+          text={"%"}
+          onClick={() => handleOperations("%")}
+          customStyle={{ backgroundColor: "blue", color: "#fff" }}
+          disabled={false}
+        /> */}
       </div>
       <div>
         <h3 style={{ marginTop: "35px" }}>HISTORY</h3>
@@ -158,7 +171,8 @@ const SimpleApp = () => {
                     <p style={{ marginBottom: "5px" }}>
                       Operation: {historyItem.inputs.a} {historyItem.operation} {historyItem.inputs.b}
                       ,Result:
-                      {" " + result}, Time: {historyItem.date.toLocaleString()}
+                      {" " + eval(`${historyItem.inputs.a} ${historyItem.operation} ${historyItem.inputs.b}`)}
+                      , Time: {historyItem.date.toLocaleString()}
                     </p>
                     <button
                       onClick={() => handleRestoreBtn(historyItem)}
