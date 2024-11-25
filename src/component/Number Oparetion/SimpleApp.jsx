@@ -11,7 +11,6 @@ import NumberField from "./ui/NumberField";
 import Button from "./ui/Button";
 import InputSection from "./input/InputSection";
 import OperationSection from "./operations/OperationSection";
-import HistorySection from "./history/HistorySection";
 
 function* generateId() {
   let id = 1;
@@ -23,8 +22,8 @@ function* generateId() {
 const getId = generateId();
 
 const initialInputState = {
-  a: 20,
-  b: 30,
+  a: 0,
+  b: 0,
 };
 
 const SimpleApp = () => {
@@ -110,6 +109,8 @@ const SimpleApp = () => {
       result,
       date: new Date(),
     };
+    console.log("Genarate history");
+
     setHistories([history, ...histories]);
   };
   //note: handle restore button
@@ -128,8 +129,6 @@ const SimpleApp = () => {
       <div>
         <InputSection inputs={inputState} handleInputField={handleInputField} />
         <OperationSection handleOperations={handleOperations} handleClearOps={handleClearOps} />
-        {console.log(histories, restoredHistory)}
-        {/* <HistorySection histories={histories} restoredHistory={restoredHistory} /> */}
       </div>
     </div>
   );

@@ -5,13 +5,13 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fas, fab);
 //css
 import "./assets/css/style.css";
-// import "milligram";
+import "milligram";
 //module import file
-import SimpleApp from "./component/Number Oparetion/SimpleApp";
+import StateLifting from "./component/State Lifting/StateLifting";
 const App = () => {
   return (
     <div>
-      <SimpleApp />
+      <StateLifting />
     </div>
   );
 };
