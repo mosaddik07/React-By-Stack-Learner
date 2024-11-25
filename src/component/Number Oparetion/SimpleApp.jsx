@@ -118,7 +118,7 @@ const SimpleApp = () => {
     // });
     // setRestoredHistory(history);
     alert("🚧 আমাদের সাইটের কাজ চলছে! আপনার ধৈর্যের জন্য ধন্যবাদ। 🚧");
-    console.log("হিস্টোরি ব্যাক পারি নাই");
+    console.log("হিস্টোরি ব্যাক করতে পারি নাই");
   };
 
   return (
@@ -127,67 +127,9 @@ const SimpleApp = () => {
       <div>
         <InputSection inputs={inputState} handleInputField={handleInputField} />
         <OperationSection handleOperations={handleOperations} handleClearOps={handleClearOps} />
-        {/* <Button
-          text={"+"}
-          onClick={() => handleOperations("+")}
-          customStyle={{ backgroundColor: "blue", color: "#fff" }}
-          disabled={false}
-        />
-        <Button
-          text={"-"}
-          onClick={() => handleOperations("-")}
-          customStyle={{ backgroundColor: "blue", color: "#fff" }}
-          disabled={false}
-        />
-        <Button
-          text={"*"}
-          onClick={() => handleOperations("*")}
-          customStyle={{ backgroundColor: "blue", color: "#fff" }}
-          disabled={false}
-        />
-        <Button
-          text={"+"}
-          onClick={() => handleOperations("/")}
-          customStyle={{ backgroundColor: "blue", color: "#fff" }}
-          disabled={false}
-        />
-        <Button
-          text={"%"}
-          onClick={() => handleOperations("%")}
-          customStyle={{ backgroundColor: "blue", color: "#fff" }}
-          disabled={false}
-        /> */}
-      </div>
-      <div>
-        <h3 style={{ marginTop: "35px" }}>HISTORY</h3>
-        {histories.length === 0 ? (
-          <p>There is no history</p>
-        ) : (
-          <div>
-            <ul>
-              {histories.map((historyItem) => {
-                return (
-                  <li key={historyItem.id} style={{ listStyle: "none" }}>
-                    <p style={{ marginBottom: "5px" }}>
-                      Operation: {historyItem.inputs.a} {historyItem.operation} {historyItem.inputs.b}
-                      ,Result:
-                      {" " + eval(`${historyItem.inputs.a} ${historyItem.operation} ${historyItem.inputs.b}`)}
-                      , Time: {historyItem.date.toLocaleString()}
-                    </p>
-                    <button
-                      onClick={() => handleRestoreBtn(historyItem)}
-                      disabled={restoredHistory != null && restoredHistory.id === historyItem.id}
-                    >
-                      restore
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
       </div>
     </div>
   );
 };
+
 export default SimpleApp;
