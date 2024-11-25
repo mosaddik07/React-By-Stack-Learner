@@ -11,6 +11,7 @@ import NumberField from "./ui/NumberField";
 import Button from "./ui/Button";
 import InputSection from "./input/InputSection";
 import OperationSection from "./operations/OperationSection";
+import HistorySection from "./history/HistorySection";
 
 function* generateId() {
   let id = 1;
@@ -23,7 +24,7 @@ const getId = generateId();
 
 const initialInputState = {
   a: 20,
-  b: 10,
+  b: 30,
 };
 
 const SimpleApp = () => {
@@ -127,6 +128,8 @@ const SimpleApp = () => {
       <div>
         <InputSection inputs={inputState} handleInputField={handleInputField} />
         <OperationSection handleOperations={handleOperations} handleClearOps={handleClearOps} />
+        {console.log(histories, restoredHistory)}
+        {/* <HistorySection histories={histories} restoredHistory={restoredHistory} /> */}
       </div>
     </div>
   );
