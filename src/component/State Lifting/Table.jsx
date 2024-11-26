@@ -1,5 +1,5 @@
 /**
- * bug:(filter) ekhankar filter er kaj valo moto bujhi nai. filter kaj kore na. eta thik korte hobe.
+ * done:(filter) ekhankar filter er kaj valo moto bujhi nai. filter kaj kore na. eta thik korte hobe.
  * bug: (search) search kaj kore nai. eta thiik kora lagbe
  */
 import { useState } from "react";
@@ -10,7 +10,6 @@ const Table = ({ contacts }) => {
 
   const handleChange = (e) => {
     setFilter(e.target.value);
-    console.log(e.target.value);
   };
 
   let filteredContact = [];
@@ -18,16 +17,13 @@ const Table = ({ contacts }) => {
   if (filter === "All") {
     filteredContact = contacts;
   } else {
-    filteredContact = contacts.filter((contact) => {
-      contact.group.toString() === filter;
-    });
+    filteredContact = contacts.filter((contact) => contact.group == filter);
   }
 
   if (searchTerm) {
     filteredContact = filteredContact.filter(
       (contact) => contact.name.includes(searchTerm) || contact.email.includes(searchTerm)
     );
-    console.log(searchTerm);
   }
 
   return (
