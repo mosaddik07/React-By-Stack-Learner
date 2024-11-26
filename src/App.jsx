@@ -2,15 +2,16 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+library.add(fas, fab);
 //css
 import "./assets/css/style.css";
-import InputForm from "./component/JSON to JSX/InputForm";
-
-library.add(fas, fab);
+import "milligram";
+//module import file
+import StateLifting from "./component/State Lifting/StateLifting";
 const App = () => {
   return (
     <div>
-      <InputForm />
+      <StateLifting />
     </div>
   );
 };
