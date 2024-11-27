@@ -7,11 +7,11 @@ library.add(fas, fab);
 import "./assets/css/style.css";
 import "milligram";
 //module import file
-import StateLifting from "./component/State Lifting/StateLifting";
+import SingleUser from "./component/Fetch/Singleuser";
 const App = () => {
   return (
     <div>
-      <StateLifting />
+      <SingleUser />
     </div>
   );
 };
