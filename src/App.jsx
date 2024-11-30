@@ -7,11 +7,13 @@ library.add(fas, fab);
 import "./assets/css/style.css";
 import "milligram";
 //module import file
-import SingleUser from "./component/Fetch/Singleuser";
+import AppHook from "./component/hooks/AppHook";
+import AnotherExample from "./component/hooks/AnotherExample";
 const App = () => {
   return (
     <div>
-      <SingleUser />
+      {/* <AppHook /> */}
+      <AnotherExample />
     </div>
   );
 };
