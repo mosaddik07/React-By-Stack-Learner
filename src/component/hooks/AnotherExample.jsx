@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import useFetch from "./useFetch";
 /**
  * todo: fetch and update state
  * todo: handle loading
@@ -6,74 +6,54 @@ import { useEffect, useState } from "react";
  */
 
 const AnotherExample = () => {
-  const [users, setUsers] = useState([]);
-  const [posts, setPosts] = useState([]);
-  const [userLoading, setUserLoading] = useState(false);
-  const [postLoading, setPostLoading] = useState(false);
-  const [userError, setUserError] = useState("");
-  const [postError, setPostError] = useState("");
+  const users = useFetch("https://jsonplaceholder.typicode.com/users", (data) => {
+    return data.map((item) => {
+      return {
+        id: item.id,
+        name: item.name,
+      };
+    });
+  });
+  const posts = useFetch("https://jsonplaceholder.typicode.com/posts", (data) => data.slice(0, 15));
+  const email = useFetch("https://jsonplaceholder.typicode.com/comments", (data) => data.slice(0, 15));
 
-  useEffect(() => {
-    fetchUsers();
-    fetchPosts();
-  }, []);
-
-  //todo: Users
-  const fetchUsers = async () => {
-    setUserLoading(true);
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      const data = await res.json();
-      setUsers(data);
-      setUserError("");
-      setUserLoading(false);
-    } catch (error) {
-      setUserError("Server error occurred while fetching users");
-      setUserLoading(false);
-    }
-  };
-
-  //todo: Posts
-  const fetchPosts = async () => {
-    setPostLoading(true);
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const data = await res.json();
-      setPosts(data);
-      setPostError("");
-      setPostLoading(false);
-    } catch (error) {
-      setPostError("Server error occurred while fetching users");
-      setPostLoading(false);
-    }
-  };
+  const userData = users.data?.map((data) => ({ name: data.name }));
 
   return (
     <div
       style={{
-        width: "900px",
+        // width: "900px",
         display: "flex",
         gap: "5rem",
-        justifyContent: "space-between",
-        marginLeft: "20px",
+        // justifyContent: "center",
+        marginLeft: "10px",
       }}
     >
       <div>
         <h1>Users</h1>
         <hr />
-        {userLoading && <img style={{ width: "60px" }} src="src/assets/images/loader2.svg" />}
-        {userError && <h3>{userError}</h3>}
-        {users.map((user) => (
+        {users.loading && <img style={{ width: "60px" }} src="src/assets/images/loader2.svg" />}
+        {users.error && <h3>{users.error}</h3>}
+        {userData.map((user) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </div>
       <div>
         <h1>Posts</h1>
         <hr />
-        {postLoading && <img style={{ width: "60px" }} src="src/assets/images/loader2.svg" />}
-        {postError && <h3>{postError}</h3>}
-        {posts.map((post) => {
+        {posts.loading && <img style={{ width: "60px" }} src="src/assets/images/loader2.svg" />}
+        {posts.error && <h3>{posts.error}</h3>}
+        {posts.data.map((post) => {
           return <li key={post.id}>{post.title}</li>;
+        })}
+      </div>
+      <div>
+        <h1>Email</h1>
+        <hr />
+        {email.loading && <img style={{ width: "60px" }} src="src/assets/images/loader2.svg" />}
+        {email.error && <h3>{posts.error}</h3>}
+        {email.data.map((post) => {
+          return <li key={post.id}>{post.email}</li>;
         })}
       </div>
     </div>
