@@ -5,15 +5,13 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fas, fab);
 //css
 import "./assets/css/style.css";
-import "milligram";
+// import "milligram";
 //module import file
-import AppHook from "./component/hooks/AppHook";
-import AnotherExample from "./component/hooks/AnotherExample";
+import StyleComponent from "./component/Styled Component/StyleComponent";
 const App = () => {
   return (
     <div>
-      {/* <AppHook /> */}
-      <AnotherExample />
+      <StyleComponent />
     </div>
   );
 };
